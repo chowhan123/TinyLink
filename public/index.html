@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TinyLink - Dashboard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="container">
+        <h1 class="logo">🔗 TinyLink</h1>
+        <nav>
+          <a href="/" class="nav-link active">Dashboard</a>
+          <a href="/healthz" class="nav-link" target="_blank">Health</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- CREATE SHORT LINK SECTION -->
+      <section class="create-section">
+        <h2>Create Short Link</h2>
+        <form id="createForm" class="create-form">
+          <div class="form-group">
+            <label for="targetUrl">Target URL *</label>
+            <input 
+              type="url" 
+              id="targetUrl" 
+              name="targetUrl" 
+              placeholder="https://example.com/your-long-url"
+              required
+            >
+            <span class="error-message" id="urlError"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="customCode">Custom Code (optional)</label>
+            <input 
+              type="text" 
+              id="customCode" 
+              name="customCode" 
+              placeholder="6-8 alphanumeric characters"
+              pattern="[A-Za-z0-9]{6,8}"
+              maxlength="8"
+            >
+            <span class="help-text">Leave empty for random code. Must be 6-8 alphanumeric characters.</span>
+            <span class="error-message" id="codeError"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            Create Short Link
+          </button>
+        </form>
+
+        <!-- SUCCESS MESSAGE -->
+        <div id="successMessage" class="success-message hidden">
+          <p>✓ Link created successfully!</p>
+          <div class="short-url-display">
+            <input type="text" id="shortUrlInput" readonly>
+            <button class="btn btn-secondary" id="copyBtn">Copy</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALL LINKS SECTION -->
+      <section class="links-section">
+        <div class="section-header">
+          <h2>All Links</h2>
+          <div class="search-box">
+            <input 
+              type="text" 
+              id="searchInput" 
+              placeholder="Search by code or URL..."
+            >
+          </div>
+        </div>
+
+        <!-- LOADING STATE -->
+        <div id="loadingState" class="loading-state">
+          <div class="spinner"></div>
+          <p>Loading links...</p>
+        </div>
+
+        <!-- EMPTY STATE -->
+        <div id="emptyState" class="empty-state hidden">
+          <p>📭 No links yet</p>
+          <p class="empty-text">Create your first short link above!</p>
+        </div>
+
+        <!-- ERROR STATE -->
+        <div id="errorState" class="error-state hidden">
+          <p>❌ Failed to load links</p>
+          <button class="btn btn-secondary" onclick="location.reload()">Retry</button>
+        </div>
+
+        <!-- LINKS TABLE -->
+        <div id="tableContainer" class="table-container hidden">
+          <table class="links-table">
+            <thead>
+              <tr>
+                <th class="sortable" data-sort="code">
+                  Code <span class="sort-icon">↕</span>
+                </th>
+                <th class="sortable" data-sort="targetUrl">
+                  Target URL <span class="sort-icon">↕</span>
+                </th>
+                <th class="sortable" data-sort="totalClicks">
+                  Clicks <span class="sort-icon">↕</span>
+                </th>
+                <th class="sortable" data-sort="lastClicked">
+                  Last Clicked <span class="sort-icon">↕</span>
+                </th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="linksTableBody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 TinyLink. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

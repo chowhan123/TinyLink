@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TinyLink - Link Stats</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="container">
+        <h1 class="logo">🔗 TinyLink</h1>
+        <nav>
+          <a href="/" class="nav-link">Dashboard</a>
+          <a href="/healthz" class="nav-link" target="_blank">Health</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="breadcrumb">
+        <a href="/">← Back to Dashboard</a>
+      </div>
+
+      <div id="loadingState" class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading stats...</p>
+      </div>
+
+      <div id="errorState" class="error-state hidden">
+        <p>❌ Link not found</p>
+        <a href="/" class="btn btn-primary">Go to Dashboard</a>
+      </div>
+
+      <div id="statsContainer" class="stats-container hidden">
+        <div class="stats-header">
+          <h2>Link Statistics</h2>
+          <span class="code-badge" id="codeBadge"></span>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🔗</div>
+            <div class="stat-content">
+              <h3>Short URL</h3>
+              <div class="url-display">
+                <input type="text" id="shortUrlInput" readonly>
+                <button class="btn btn-icon" id="copyShortBtn" title="Copy">
+                  📋
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-content">
+              <h3>Target URL</h3>
+              <div class="url-display">
+                <input type="text" id="targetUrlInput" readonly>
+                <button class="btn btn-icon" id="copyTargetBtn" title="Copy">
+                  📋
+                </button>
+                <a href="#" id="visitLink" target="_blank" class="btn btn-icon" title="Visit">
+                  🔗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">👆</div>
+            <div class="stat-content">
+              <h3>Total Clicks</h3>
+              <p class="stat-value" id="totalClicks">-</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">🕒</div>
+            <div class="stat-content">
+              <h3>Last Clicked</h3>
+              <p class="stat-value" id="lastClicked">-</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <div class="stat-content">
+              <h3>Created At</h3>
+              <p class="stat-value" id="createdAt">-</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="danger-zone">
+          <h3>Danger Zone</h3>
+          <p>Once you delete this link, it cannot be recovered.</p>
+          <button class="btn btn-danger" id="deleteBtn">Delete Link</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 TinyLink. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/js/stats.js"></script>
+</body>
+</html>
