@@ -349,49 +349,6 @@ Location: https://example.com/very-long-url
 
 ---
 
-## 🧪 Testing
-
-### Manual Testing Checklist
-
-**Health Check:**
-```bash
-curl http://localhost:3000/healthz
-# Should return: {"ok":true,"version":"1.0",...}
-```
-
-**Create Link:**
-```bash
-curl -X POST http://localhost:3000/api/links \
-  -H "Content-Type: application/json" \
-  -d '{"targetUrl":"https://google.com","customCode":"test123"}'
-```
-
-**Test Duplicate (should fail with 409):**
-```bash
-curl -X POST http://localhost:3000/api/links \
-  -H "Content-Type: application/json" \
-  -d '{"targetUrl":"https://github.com","customCode":"test123"}'
-```
-
-**Test Redirect:**
-```bash
-curl -I http://localhost:3000/test123
-# Should return: HTTP/1.1 302 Found
-```
-
-**Delete Link:**
-```bash
-curl -X DELETE http://localhost:3000/api/links/test123
-```
-
-**Test Deleted Link (should return 404):**
-```bash
-curl -I http://localhost:3000/test123
-# Should return: HTTP/1.1 404 Not Found
-```
-
----
-
 ## 🔒 Security Features
 
 - ✅ **URL Validation** - Validates all URLs before saving
@@ -450,18 +407,6 @@ CREATE INDEX idx_created_at ON links(created_at);
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
 ## 📝 Code Validation Rules
 
 ### Short Codes
@@ -492,24 +437,6 @@ Contributions are welcome! Please follow these steps:
 - Inspired by bit.ly and TinyURL
 - Database hosted on [Neon](https://neon.tech)
 - Deployed on [Render](https://render.com)
-
----
-
-## ⚡ Performance
-
-- Average redirect time: < 100ms
-- 99.9% uptime
-- Handles 1000+ requests per minute
-- Database query optimization with indexes
-
----
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-1. Check the [Issues](https://github.com/chowhan123/TinyLink/issues) page
-2. Create a new issue with details
-3. Contact: santhoshnaik6929@gmail.com
 
 ---
 
